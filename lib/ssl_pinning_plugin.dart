@@ -17,15 +17,17 @@ class SslPinningPlugin {
       HttpMethod httpMethod = HttpMethod.Get,
       Map<String, String>? headerHttp,
       required SHA sha,
-      required List<String> allowedSHAFingerprints,
-      required int timeout}) async {
+      List<String>? allowedSHAFingerprints,
+      required int timeout,
+      String? issuerKey}) async {
     final Map<String, dynamic> params = <String, dynamic>{
       "url": serverURL,
       "httpMethod": httpMethod.toString().split(".").last,
       "headers": headerHttp ?? new Map(),
       "type": sha.toString().split(".").last,
-      "fingerprints": allowedSHAFingerprints,
-      "timeout": timeout
+      "fingerprints": allowedSHAFingerprints ?? [],
+      "timeout": timeout,
+      "issuerKey": issuerKey ?? ""
     };
 
     String resp = await _channel.invokeMethod('check', params);

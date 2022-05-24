@@ -42,7 +42,8 @@ class _MyAppState extends State<MyApp> {
           httpMethod: httpMethod,
           sha: sha,
           allowedSHAFingerprints: allowedShA1FingerprintList,
-          timeout: timeout);
+          timeout: timeout,
+          issuerKey: "Amazon");
 
       // If the widget was removed from the tree while the asynchronous platform
       // message was in flight, we want to discard the reply rather than calling
@@ -95,7 +96,8 @@ class _MyAppState extends State<MyApp> {
                     children: <Widget>[
                       TextFormField(
                           keyboardType: TextInputType.url,
-                          initialValue: "https://flutter.dev/",
+                          initialValue:
+                              "https://api.dev.ext.test.myapp.enfuce.com/",
                           decoration: InputDecoration(
                             hintText: 'https://yourdomain.com',
                             labelText: 'URL',

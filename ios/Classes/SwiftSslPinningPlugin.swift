@@ -42,7 +42,8 @@ public class SwiftSslPinningPlugin: NSObject, FlutterPlugin {
               let _httpMethod = args["httpMethod"] as? String,
               let _headers = args["headers"] as? Dictionary<String, String>,
               let _fingerprints = args["fingerprints"] as? Array<String>,
-              let _type = args["type"] as? String
+              let _type = args["type"] as? String,
+              let _issuerKey: String = args["issuerKey"] as? String
         else {
             self.sendResponse(result: FlutterError(code: "Params incorrect", message: "Les params sont incorrect", details: nil))
             return
@@ -72,7 +73,7 @@ public class SwiftSslPinningPlugin: NSObject, FlutterPlugin {
 
             guard
                 let _serverTrust = challenge.protectionSpace.serverTrust,
-                let _serverCert = SecTrustGetCertificateAtIndex(_serverTrust, 0),
+                let _serverCert = SecTrustGetCertificateAtIndex(_serverTrust, 2),
                 challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
                 SecTrustEvaluate(_serverTrust, nil) == errSecSuccess
                 else {

@@ -66,7 +66,7 @@ class SslPinningPlugin : MethodCallHandler, FlutterPlugin {
 
     @RequiresApi(Build.VERSION_CODES.N)
     @Throws(ParseException::class)
-    private fun handleCheckEvent(call: MethodCall, result: Result) {
+    private fun handleCheckEvent(call: MethodCall, result: Result) {kljuj90h9uyt8776rr
         val arguments: HashMap<String, Any> = call.arguments as HashMap<String, Any>
         val serverURL: String = arguments.get("url") as String
         val allowedFingerprints: List<String> = arguments.get("fingerprints") as List<String>
